@@ -10,9 +10,6 @@ class MainClass
     confrontations_array = File.read("score.txt").split("\n")
     confrontations_array.each { |line|
       confrontation = line.split(',')
-      # puts "size= "
-      # words_in_first_name = confrontation[0].split(' ').size - 1
-      # words_in_second_name = confrontation[1].split(' ').size - 1
       first_array = confrontation[0].split(' ')
       second_array = confrontation[1].split(' ')
       first_team_score = first_array.pop
@@ -32,11 +29,19 @@ class MainClass
       end
     }
     self.result_score = self.result_score.sort_by {|_key, value| value}.reverse.to_h
-    #@result_score = self.result_score.fetch("team_name")
+    print_result
   end
 
   private
 
+  def print_result
+    i=0
+    self.result_score.each do |key, value|
+      i+=1
+      puts "#{i}. #{key}, #{value} pts"
+    end
+
+  end
 end
 
 MainClass.new

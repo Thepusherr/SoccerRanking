@@ -1,4 +1,4 @@
-class MainClass
+class SoccerRanking
   attr_accessor :result_score
 
   def initialize
@@ -7,7 +7,15 @@ class MainClass
     p "Enter filename: "
     filename = STDIN.gets.chomp
     return unless (accepted_formats.include? File.extname(filename)) && File.file?(filename)
-    confrontations_array = File.read("score.txt").split("\n")
+    fill_results(filename)
+    sort_results
+    print_result
+  end
+
+  private
+
+  def fill_results(filename)
+    confrontations_array = File.read(filename).split("\n")
     confrontations_array.each { |line|
       confrontation = line.split(',')
       first_array = confrontation[0].split(' ')
@@ -16,7 +24,6 @@ class MainClass
       first_team_name = first_array.join(" ")
       second_team_score = second_array.pop
       second_team_name = second_array.join(" ")
-
       if first_team_score > second_team_score
         self.result_score[first_team_name] += 3
         self.result_score[second_team_name] += 0
@@ -28,20 +35,19 @@ class MainClass
         self.result_score[second_team_name] += 1
       end
     }
-    self.result_score = self.result_score.sort_by {|_key, value| value}.reverse.to_h
-    print_result
   end
 
-  private
+  def sort_results
+    self.result_score = self.result_score.sort_by {|_key, value| value}.reverse.to_h
+  end
 
   def print_result
-    i=0
+    i = 0
     self.result_score.each do |key, value|
-      i+=1
+      i += 1
       puts "#{i}. #{key}, #{value} pts"
     end
-
   end
 end
 
-MainClass.new
+SoccerRanking.new

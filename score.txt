@@ -6,3 +6,6 @@ Lions 4, Grouches 0
 Tarantulas 3, Snakes 5
 Lions 4, ASD 0
 Snakes 5, BSD 0
+Lions 5, FC Awesome 1
+Lions 6, FC Awesome 1
+Lions 5, FC Awesome 1

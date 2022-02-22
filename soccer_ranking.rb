@@ -38,7 +38,7 @@ class SoccerRanking
   end
 
   def sort_results
-    self.result_score = self.result_score.sort_by {|key, value| [value,key]}.reverse.to_h
+    self.result_score = self.result_score.sort_by {|key, value| [-value,-key]}.to_h
   end
 
   def print_result
